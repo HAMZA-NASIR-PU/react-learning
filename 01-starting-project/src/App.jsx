@@ -1,15 +1,23 @@
+import { useState } from 'react';
+
 import { CORE_CONCEPTS } from './data';
 import Header from './components/Heder/Header';
 import CoreConcept from './components/CoreConcept';
 import TabButton from './components/TabButton';
 function App() {
-  console.log("App component executed");
+  console.log("****************************App component executed....");
 
-  let tabContent = 'Please click the button';
+  //react hooks only be called inside component functions and custom react hooks.
+  // You can't use react hooks inside other functions.
+
+  // array destructuring
+  // names are up to you
+  const [selectedTopic, setSelectedTopic] = useState('Please click a button');
+
 
   function handleClick(selectedButton) {
-    console.log(tabContent);
-    tabContent = selectedButton;
+    setSelectedTopic(selectedButton);
+    console.log(selectedTopic);
   }
 
   return (
@@ -35,7 +43,7 @@ function App() {
             <TabButton onSelect={() => handleClick('props')}>Props</TabButton>
             <TabButton onSelect={() => handleClick('state')}>State</TabButton>
           </menu>
-          {tabContent}
+          {selectedTopic}
         </section>
       </main>
     </div>
